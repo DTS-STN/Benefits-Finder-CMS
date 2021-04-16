@@ -52,6 +52,12 @@
     "Slug": {
       "type": "uid",
       "targetField": "ProductNameEn"
+    },
+    "ApplyLinkEn": {
+      "type": "string"
+    },
+    "ApplyLinkFr": {
+      "type": "string"
     }
   }
 }
