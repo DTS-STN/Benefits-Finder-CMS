@@ -1,5 +1,5 @@
 image:
-  repository: mtscontainers.azurecr.io/bf-cms-strapi-api
+  repository: mtscontainers.azurecr.io/bf-cms-api
 {{ if or (eq .Environment.Name "prod-blue") (eq .Environment.Name "prod-green") (eq .Environment.Name "dev") }}
   tag: "{{ requiredEnv "DOCKER_TAG" }}"
 {{ else }}
@@ -11,10 +11,10 @@ ingress:
   enabled: true
   hosts:
   {{ if or (eq .Environment.Name "prod-blue") (eq .Environment.Name "prod-green") }}
-    - bf-cms-strapi-api.{{ requiredEnv "BASE_DOMAIN" }}
-    - bf-cms-strapi-api.{{ .Environment.Name }}.{{ requiredEnv "BASE_DOMAIN" }}
+    - bf-cms-api.{{ requiredEnv "BASE_DOMAIN" }}
+    - bf-cms-api.{{ .Environment.Name }}.{{ requiredEnv "BASE_DOMAIN" }}
   {{ else }}
-    - bf-cms-strapi-api-{{ .Environment.Name }}.{{ requiredEnv "BASE_DOMAIN_DEV" }}
+    - bf-cms-api-{{ .Environment.Name }}.{{ requiredEnv "BASE_DOMAIN_DEV" }}
   {{ end }}
 
 resources:
