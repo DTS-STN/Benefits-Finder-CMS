@@ -1,5 +1,5 @@
 image:
-  repository: mtscontainers.azurecr.io/cms-bakeoff-strapi-api
+  repository: mtscontainers.azurecr.io/benefits-finder-cms-strapi-api
 {{ if or (eq .Environment.Name "prod-blue") (eq .Environment.Name "prod-green") (eq .Environment.Name "dev") }}
   tag: "{{ requiredEnv "DOCKER_TAG" }}"
 {{ else }}
@@ -11,10 +11,10 @@ ingress:
   enabled: true
   hosts:
   {{ if or (eq .Environment.Name "prod-blue") (eq .Environment.Name "prod-green") }}
-    - cms-bakeoff-strapi-api.{{ requiredEnv "BASE_DOMAIN" }}
-    - cms-bakeoff-strapi-api.{{ .Environment.Name }}.{{ requiredEnv "BASE_DOMAIN" }}
+    - benefits-finder-cms-strapi-api.{{ requiredEnv "BASE_DOMAIN" }}
+    - benefits-finder-cms-strapi-api.{{ .Environment.Name }}.{{ requiredEnv "BASE_DOMAIN" }}
   {{ else }}
-    - cms-bakeoff-strapi-api-{{ .Environment.Name }}.{{ requiredEnv "BASE_DOMAIN_DEV" }}
+    - benefits-finder-cms-strapi-api-{{ .Environment.Name }}.{{ requiredEnv "BASE_DOMAIN_DEV" }}
   {{ end }}
 
 resources:
