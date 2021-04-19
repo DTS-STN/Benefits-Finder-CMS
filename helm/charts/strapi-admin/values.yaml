@@ -8,7 +8,7 @@ strapiAdminPort:
   protocol: TCP
 
 image:
-  repository: mtscontainers.axurecr.io/ebf-strapi-admin
+  repository: mtscontainers.azurecr.io/benefits-finder-cms-strapi-admin
   tag: latest
   pullPolicy: Always
 
