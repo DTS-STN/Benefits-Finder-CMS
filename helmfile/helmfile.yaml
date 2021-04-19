@@ -31,7 +31,7 @@ releases:
       category: dts
       app: benefits-finder-cms-strapi-{{ .Environment.Name }}
       tier: server
-    namespace: benefits-finder-cms-strapi-api-{{ .Environment.Name }}
+    namespace: bf-cms-strapi-api-{{ .Environment.Name }}
     installed: true
     wait: true
     force: false
@@ -43,13 +43,13 @@ releases:
       category: dts
       app: benefits-finder-cms-strapi-{{ .Environment.Name }}
       tier: server
-    namespace: benefits-finder-cms-strapi-api-{{ .Environment.Name }}
+    namespace: bf-cms-strapi-api-{{ .Environment.Name }}
     installed: true
     wait: true
     force: false
   - name: benefits-finder-cms-strapi-pg-{{ .Environment.Name }}
     chart: bitnami/postgresql
-    namespace: benefits-finder-cms-strapi-api-{{ .Environment.Name }}
+    namespace: bf-cms-strapi-api-{{ .Environment.Name }}
     values:
       - overrides/strapi-psql.yaml.gotmpl
     labels:
