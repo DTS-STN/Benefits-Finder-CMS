@@ -1,5 +1,5 @@
 name: strapi-backend
-home: https://github.com/DTS-STN/Benefits-Finder
+home: https://github.com/DTS-STN/Benefits-Finder-CMS
 apiVersion: v1
 version: 0.0.1
 description: strapi api chart for benefits finder
