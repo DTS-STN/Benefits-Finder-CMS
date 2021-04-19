@@ -22,11 +22,7 @@ helmDefaults:
 
 
 releases:
-<<<<<<< HEAD
-  - name: benefits-finder-cms-strapi-api-{{ .Environment.Name }}
-=======
   - name: bf-cms-strapi-api-{{ .Environment.Name }}
->>>>>>> origin/master
     chart: ../helm/charts/strapi-backend
     version: 0.0.1
     values:
