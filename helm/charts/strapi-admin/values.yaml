@@ -8,7 +8,7 @@ strapiAdminPort:
   protocol: TCP
 
 image:
-  repository: mtscontainers.azurecr.io/bf-cms-strapi-admin
+  repository: mtscontainers.azurecr.io/bf-cms-admin
   tag: latest
   pullPolicy: Always
 
