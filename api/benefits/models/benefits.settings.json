@@ -14,7 +14,7 @@
     "ProductNameEn": {
       "type": "string"
     },
-    "ProgramNameFr": {
+    "ProductNameFr": {
       "type": "string"
     },
     "Type": {
