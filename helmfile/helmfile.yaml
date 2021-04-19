@@ -22,39 +22,39 @@ helmDefaults:
 
 
 releases:
-  - name: benefits-finder-cms-strapi-api-{{ .Environment.Name }}
+  - name: bf-cms-strapi-api-{{ .Environment.Name }}
     chart: ../helm/charts/strapi-backend
     version: 0.0.1
     values:
       - overrides/strapi-backend.yaml.gotmpl
     labels:
       category: dts
-      app: benefits-finder-cms-strapi-{{ .Environment.Name }}
+      app: bf-cms-strapi-{{ .Environment.Name }}
       tier: server
     namespace: bf-cms-strapi-api-{{ .Environment.Name }}
     installed: true
     wait: true
     force: false
-  - name: benefits-finder-cms-strapi-admin-{{ .Environment.Name }}
+  - name: bf-cms-strapi-admin-{{ .Environment.Name }}
     chart: ../helm/charts/strapi-admin
     values:
       - overrides/strapi-admin.yaml.gotmpl
     labels:
       category: dts
-      app: benefits-finder-cms-strapi-{{ .Environment.Name }}
+      app: bf-cms-strapi-{{ .Environment.Name }}
       tier: server
     namespace: bf-cms-strapi-api-{{ .Environment.Name }}
     installed: true
     wait: true
     force: false
-  - name: benefits-finder-cms-strapi-pg-{{ .Environment.Name }}
+  - name: bf-cms-strapi-pg-{{ .Environment.Name }}
     chart: bitnami/postgresql
     namespace: bf-cms-strapi-api-{{ .Environment.Name }}
     values:
       - overrides/strapi-psql.yaml.gotmpl
     labels:
       category: dts
-      app: benefits-finder-cms-strapi-{{ .Environment.Name }}
+      app: bf-cms-strapi-{{ .Environment.Name }}
       tier: database
     installed: true
     wait: false
