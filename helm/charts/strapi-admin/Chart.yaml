@@ -1,10 +1,10 @@
 name: strapi
-home: https://github.com/DTS-STN/ExperimentalBenefitsFinderCMS
+home: https://github.com/DTS-STN/Benefits-Finder-CMS
 apiVersion: v1
 version: 0.0.1
-description: strapi chart for experimental benefits finder
+description: strapi chart for benefits finder
 maintainers:
-  - name: omarnasr
-    email: omar.nasr@hrsdc-rhdcc.gc.ca
-  - name: ericdube
-    email: eric.dube@hrsdc-rhdcc.gc.ca
+  - name: thomasdacey
+    email: thomas.dacey@hrsdc-rhdcc.gc.ca
+  - name: kylemeelker
+    email: kyle.meelker@hrsdc-rhdcc.gc.ca
