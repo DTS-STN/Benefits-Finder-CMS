@@ -1,5 +1,5 @@
 image:
-  repository: mtscontainers.azurecr.io/benefits-finder-cms-strapi-admin
+  repository: mtscontainers.azurecr.io/bf-cms-strapi-admin
 {{ if or (eq .Environment.Name "prod-blue") (eq .Environment.Name "prod-green") (eq .Environment.Name "dev") }}
   tag: "{{ requiredEnv "DOCKER_TAG" }}"
 {{ else }}
@@ -11,10 +11,10 @@ ingress:
   enabled: true
   hosts:
   {{ if or (eq .Environment.Name "prod-blue") (eq .Environment.Name "prod-green") }}
-    - benefits-finder-cms-strapi.{{ requiredEnv "BASE_DOMAIN" }}
-    - benefits-finder-cms-strapi.{{ .Environment.Name }}.{{ requiredEnv "BASE_DOMAIN" }}
+    - bf-cms-strapi.{{ requiredEnv "BASE_DOMAIN" }}
+    - bf-cms-strapi.{{ .Environment.Name }}.{{ requiredEnv "BASE_DOMAIN" }}
   {{ else }}
-    - benefits-finder-cms-strapi-{{ .Environment.Name }}.{{ requiredEnv "BASE_DOMAIN_DEV" }}
+    - bf-cms-strapi-{{ .Environment.Name }}.{{ requiredEnv "BASE_DOMAIN_DEV" }}
   {{ end }}
 
 resources:
