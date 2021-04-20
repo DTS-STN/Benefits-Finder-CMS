@@ -8,7 +8,7 @@ strapiBackendPort:
   protocol: TCP
 
 image:
-  repository: mtscontainers.azurecr.io/bf-cms-api
+  repository: mtscontainers.azurecr.io/benefits-finder-strapi-api
   tag: latest
   pullPolicy: Always
 
