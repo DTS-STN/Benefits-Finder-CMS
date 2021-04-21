@@ -55,10 +55,9 @@
       "via": "benefits",
       "dominant": true
     },
-    "overarching_programs": {
-      "collection": "overarching-program",
-      "via": "benefits",
-      "dominant": true
+    "overarching_program": {
+      "model": "overarching-program",
+      "via": "benefits"
     }
   }
 }

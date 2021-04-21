@@ -31,7 +31,7 @@
       "required": true
     },
     "benefits": {
-      "via": "overarching_programs",
+      "via": "overarching_program",
       "collection": "benefit"
     }
   }
