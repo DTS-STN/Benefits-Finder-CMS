@@ -1,0 +1,20 @@
+{
+  "kind": "collectionType",
+  "collectionName": "benefit_types",
+  "info": {
+    "name": "BenefitType"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "Type_EN": {
+      "type": "string"
+    },
+    "Type_FR": {
+      "type": "string"
+    }
+  }
+}

@@ -23,12 +23,6 @@
     "Description_FR": {
       "type": "text"
     },
-    "Type_EN": {
-      "type": "string"
-    },
-    "Type_FR": {
-      "type": "string"
-    },
     "ApplyLink_EN": {
       "type": "string"
     },
@@ -50,6 +44,9 @@
     "Slug": {
       "type": "uid",
       "targetField": "Title_EN"
+    },
+    "Type": {
+      "model": "benefit-type"
     }
   }
 }
