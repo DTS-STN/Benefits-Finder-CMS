@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/overarching-programs",
+      "handler": "overarching-program.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/overarching-programs/count",
+      "handler": "overarching-program.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/overarching-programs/:id",
+      "handler": "overarching-program.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/overarching-programs",
+      "handler": "overarching-program.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/overarching-programs/:id",
+      "handler": "overarching-program.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/overarching-programs/:id",
+      "handler": "overarching-program.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

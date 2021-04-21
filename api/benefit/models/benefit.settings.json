@@ -45,8 +45,20 @@
       "type": "uid",
       "targetField": "Title_EN"
     },
-    "Type": {
-      "model": "benefit-type"
+    "types": {
+      "collection": "benefit-type",
+      "via": "benefits",
+      "dominant": true
+    },
+    "collections": {
+      "collection": "collection",
+      "via": "benefits",
+      "dominant": true
+    },
+    "overarching_programs": {
+      "collection": "overarching-program",
+      "via": "benefits",
+      "dominant": true
     }
   }
 }

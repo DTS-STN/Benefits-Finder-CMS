@@ -1,0 +1,38 @@
+{
+  "kind": "collectionType",
+  "collectionName": "collections",
+  "info": {
+    "name": "Collection",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "Title_EN": {
+      "type": "string",
+      "required": true
+    },
+    "Title_FR": {
+      "type": "string",
+      "required": true
+    },
+    "Description_EN": {
+      "type": "text"
+    },
+    "Description_FR": {
+      "type": "text"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "Title_EN",
+      "required": true
+    },
+    "benefits": {
+      "via": "collections",
+      "collection": "benefit"
+    }
+  }
+}

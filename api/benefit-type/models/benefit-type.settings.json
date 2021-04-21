@@ -15,6 +15,10 @@
     },
     "Type_FR": {
       "type": "string"
+    },
+    "benefits": {
+      "via": "types",
+      "collection": "benefit"
     }
   }
 }
