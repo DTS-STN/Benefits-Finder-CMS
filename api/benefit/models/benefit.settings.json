@@ -1,0 +1,52 @@
+{
+  "kind": "collectionType",
+  "collectionName": "benefits",
+  "info": {
+    "name": "Benefit",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "Title_EN": {
+      "type": "string"
+    },
+    "Title_FR": {
+      "type": "string"
+    },
+    "Description_EN": {
+      "type": "text"
+    },
+    "Description_FR": {
+      "type": "text"
+    },
+    "ApplyLink_EN": {
+      "type": "string"
+    },
+    "ApplyLink_FR": {
+      "type": "string"
+    },
+    "Outcomes_EN": {
+      "type": "text"
+    },
+    "Outcomes_FR": {
+      "type": "text"
+    },
+    "Provider_EN": {
+      "type": "text"
+    },
+    "Provider_FR": {
+      "type": "text"
+    },
+    "Slug": {
+      "type": "uid",
+      "targetField": "Title_EN"
+    },
+    "Type": {
+      "model": "benefit-type"
+    }
+  }
+}
