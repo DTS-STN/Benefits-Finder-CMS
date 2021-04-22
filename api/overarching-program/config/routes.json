@@ -2,48 +2,48 @@
   "routes": [
     {
       "method": "GET",
-      "path": "/tags",
-      "handler": "tags.find",
+      "path": "/overarching-programs",
+      "handler": "overarching-program.find",
       "config": {
         "policies": []
       }
     },
     {
       "method": "GET",
-      "path": "/tags/count",
-      "handler": "tags.count",
+      "path": "/overarching-programs/count",
+      "handler": "overarching-program.count",
       "config": {
         "policies": []
       }
     },
     {
       "method": "GET",
-      "path": "/tags/:id",
-      "handler": "tags.findOne",
+      "path": "/overarching-programs/:id",
+      "handler": "overarching-program.findOne",
       "config": {
         "policies": []
       }
     },
     {
       "method": "POST",
-      "path": "/tags",
-      "handler": "tags.create",
+      "path": "/overarching-programs",
+      "handler": "overarching-program.create",
       "config": {
         "policies": []
       }
     },
     {
       "method": "PUT",
-      "path": "/tags/:id",
-      "handler": "tags.update",
+      "path": "/overarching-programs/:id",
+      "handler": "overarching-program.update",
       "config": {
         "policies": []
       }
     },
     {
       "method": "DELETE",
-      "path": "/tags/:id",
-      "handler": "tags.delete",
+      "path": "/overarching-programs/:id",
+      "handler": "overarching-program.delete",
       "config": {
         "policies": []
       }

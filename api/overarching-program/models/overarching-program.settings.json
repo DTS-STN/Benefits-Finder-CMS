@@ -1,0 +1,33 @@
+{
+  "kind": "collectionType",
+  "collectionName": "programs",
+  "info": {
+    "name": "Program",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "Title_EN": {
+      "type": "string",
+      "required": true
+    },
+    "Title_FR": {
+      "type": "string",
+      "required": true
+    },
+    "Description_EN": {
+      "type": "text"
+    },
+    "Description_FR": {
+      "type": "text"
+    },
+    "benefits": {
+      "via": "program",
+      "collection": "benefit"
+    }
+  }
+}

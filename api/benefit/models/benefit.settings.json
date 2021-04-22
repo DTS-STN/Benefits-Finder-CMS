@@ -41,12 +41,18 @@
     "Provider_FR": {
       "type": "text"
     },
-    "Slug": {
-      "type": "uid",
-      "targetField": "Title_EN"
+    "type": {
+      "model": "benefit-type",
+      "via": "benefits"
     },
-    "Type": {
-      "model": "benefit-type"
+    "collections": {
+      "collection": "collection",
+      "via": "benefits",
+      "dominant": true
+    },
+    "program": {
+      "model": "overarching-program",
+      "via": "benefits"
     }
   }
 }
