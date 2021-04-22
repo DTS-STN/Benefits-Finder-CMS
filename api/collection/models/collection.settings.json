@@ -25,14 +25,9 @@
     "Description_FR": {
       "type": "text"
     },
-    "slug": {
-      "type": "uid",
-      "targetField": "Title_EN",
-      "required": true
-    },
     "benefits": {
-      "via": "collections",
-      "collection": "benefit"
+      "collection": "benefit",
+      "via": "collections"
     }
   }
 }
