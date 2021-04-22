@@ -2,7 +2,7 @@
   "kind": "collectionType",
   "collectionName": "programs",
   "info": {
-    "name": "Overarching Program",
+    "name": "Program",
     "description": ""
   },
   "options": {
@@ -26,8 +26,8 @@
       "type": "text"
     },
     "benefits": {
-      "collection": "benefit",
-      "via": "overarching_program"
+      "via": "program",
+      "collection": "benefit"
     }
   }
 }

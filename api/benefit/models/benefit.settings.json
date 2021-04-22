@@ -41,19 +41,18 @@
     "Provider_FR": {
       "type": "text"
     },
-    "types": {
-      "collection": "benefit-type",
-      "via": "benefits",
-      "dominant": true
+    "type": {
+      "model": "benefit-type",
+      "via": "benefits"
     },
     "collections": {
-      "via": "benefits",
       "collection": "collection",
+      "via": "benefits",
       "dominant": true
     },
-    "overarching_program": {
-      "via": "benefits",
-      "model": "overarching-program"
+    "program": {
+      "model": "overarching-program",
+      "via": "benefits"
     }
   }
 }

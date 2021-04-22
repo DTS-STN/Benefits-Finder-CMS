@@ -26,8 +26,8 @@
       "type": "text"
     },
     "benefits": {
-      "collection": "benefit",
-      "via": "collections"
+      "via": "collections",
+      "collection": "benefit"
     }
   }
 }
