@@ -51,8 +51,8 @@
       "dominant": true
     },
     "program": {
-      "model": "overarching-program",
-      "via": "benefits"
+      "via": "benefits",
+      "model": "overarching-program"
     }
   }
 }

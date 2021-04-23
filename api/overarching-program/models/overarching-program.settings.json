@@ -26,8 +26,25 @@
       "type": "text"
     },
     "benefits": {
-      "via": "program",
-      "collection": "benefit"
+      "collection": "benefit",
+      "via": "program"
+    },
+    "ImageAltText_EN": {
+      "type": "string"
+    },
+    "Image": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false
+    },
+    "ImageAltText_FR": {
+      "type": "string"
     }
   }
 }
