@@ -1,11 +1,13 @@
 import sys
 import requests
 import json
+import csv
 
-#python3 /addBenefit.py user password http://localhost:1337
+#python3 /addBenefit.py user password http://localhost:1337 csvfile.csv
 user = sys.argv[1]
 password = sys.argv[2]
 strapi = sys.argv[3]
+csvFile = sys.argv[4]
 
 def start():
   print("Start of add benefit as user %s in %s" % (user, strapi))
@@ -16,6 +18,12 @@ def start():
   if (not call.authenticate()):
     print("Unable to Authenticate")
     return
+
+  #Reads in CSV and adds rows to strapi
+  # csvParser = CSVParser(csvFile)
+  # data = csvParser.getData()
+  # for benefit in data:
+  #   call.postCollectionItem("benefits", benefit)
 
   #Example of getting benefit number 5
   # call.getCollectionItem("benefits", "5")
@@ -93,5 +101,24 @@ class Benefit:
       "program": program,
     }
     return data
+
+class CSVParser:
+
+  def __init__(self, csvFile):
+    self.csvFile = csvFile
+
+  def getData(self):
+    print("Loading CSV from %s" % (self.csvFile))
+    result = [] 
+    with open(self.csvFile, newline='') as csvfile:
+      spamreader = csv.reader(csvfile, delimiter=",", quotechar='\"')
+      header = next(spamreader)
+      for row in spamreader:
+        data = {}
+        for columnIndex in range(len(row)):
+          if (header[columnIndex] != "collections" and header[columnIndex] != "types" and header[columnIndex] != "program"):
+            data[header[columnIndex]] = row[columnIndex]
+        result.append(data)
+    return result
 
 start()
