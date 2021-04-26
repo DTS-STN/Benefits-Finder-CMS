@@ -19,6 +19,9 @@ def start():
 
   #Example of getting benefit number 5
   # call.getCollectionItem("benefits", "5")
+
+  #Example of getting all of benefits
+  # call.getAllCollectionItems("benefits")
   
   #Example of creating a benefit
   # benefit = Benefit()
@@ -54,11 +57,20 @@ class CallStrapiAPI:
   def getCollectionItem(self, collectionType, id):
     with requests.get("%s/%s/%s" % (strapi, collectionType, id), headers = self.getHeader()) as r:
       print("%s: %s-%s" % (r.status_code, collectionType, id))
+      if (r.status_code == 200):
+        return r.text
+
+  def getAllCollectionItems(self, collectionType):
+    with requests.get("%s/%s" % (strapi, collectionType), headers = self.getHeader()) as r:
+      print("%s: %s" % (r.status_code, collectionType))
+      if (r.status_code == 200):
+        return r.text
 
   def postCollectionItem(self, collectionType, data):
     with requests.post("%s/%s" % (strapi, collectionType), headers = self.getHeader(), data = data) as r:
       if (r.status_code == 200):
         print("%s: %s added to %s" % (r.status_code, data, collectionType))
+        return r.text
       else:
         print("%s: %s failed to add to %s" % (r.status_code, data, collectionType))
 
