@@ -15,32 +15,32 @@ def examples():
 
   call = CallStrapiAPI(user, password, strapi)
 
-  #Ensure user is authenticated
+  ##Ensure user is authenticated
   # if (not call.authenticate()):
   #   print("Unable to Authenticate")
   #   return
 
-  #Reads in CSV and adds rows to strapi
+  ##Reads in CSV and adds rows to strapi
   # csvParser = CSVParser(csvFile)
   # data = csvParser.getData()
   # for item in data:
   #   call.postCollectionItem(strapiCollectionType, item)
 
-  #Example of getting benefit number 5
+  ##Example of getting benefit number 5
   # call.getCollectionItem(strapiCollectionType, "5")
 
-  #Example of getting all of benefits
+  ##Example of getting all of benefits
   # call.getAllCollectionItems(strapiCollectionType)
 
-  #Example of deleting benefit number 5
+  ##Example of deleting benefit number 5
   # call.deleteCollectionItem(strapiCollectionType, "5")
   
-  #Example of creating a benefit
+  ##Example of creating a benefit
   # benefit = Benefit()
   # data = benefit.buildData("Test title En", "Test title Fr", "Description En", "Description Fr", "Apply link En", "Apply link Fr", "Outcomes En", "Outcomes Fr", "Provider En", "Provider Fr")
   # call.postCollectionItem("benefits", data)
 
-  #Example of iterating over all benefits and deleting
+  ##Example of iterating over all benefits and deleting
   # items = json.loads(call.getAllCollectionItems(strapiCollectionType))
   # for item in items:
   #   call.deleteCollectionItem(strapiCollectionType, item["id"])
@@ -136,7 +136,6 @@ class Benefit:
     return data
 
 class CSVParser:
-
   def __init__(self, csvFile):
     self.csvFile = csvFile
 
