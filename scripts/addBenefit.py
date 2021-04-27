@@ -3,14 +3,51 @@ import requests
 import json
 import csv
 
-#python3 /addBenefit.py user password http://localhost:1337 csvfile.csv
+#python3 /addBenefit.py user password http://localhost:1337 benefits csvfile.csv
 user = sys.argv[1]
 password = sys.argv[2]
 strapi = sys.argv[3]
-csvFile = sys.argv[4]
+strapiCollectionType = sys.argv[4]
+csvFile = sys.argv[5]
 
-def start():
-  print("Start of add benefit as user %s in %s" % (user, strapi))
+def examples():
+  print("Start - user %s in %s to collection %s" % (user, strapi, strapiCollectionType))
+
+  call = CallStrapiAPI(user, password, strapi)
+
+  #Ensure user is authenticated
+  # if (not call.authenticate()):
+  #   print("Unable to Authenticate")
+  #   return
+
+  #Reads in CSV and adds rows to strapi
+  # csvParser = CSVParser(csvFile)
+  # data = csvParser.getData()
+  # for item in data:
+  #   call.postCollectionItem(strapiCollectionType, item)
+
+  #Example of getting benefit number 5
+  # call.getCollectionItem(strapiCollectionType, "5")
+
+  #Example of getting all of benefits
+  # call.getAllCollectionItems(strapiCollectionType)
+
+  #Example of deleting benefit number 5
+  # call.deleteCollectionItem(strapiCollectionType, "5")
+  
+  #Example of creating a benefit
+  # benefit = Benefit()
+  # data = benefit.buildData("Test title En", "Test title Fr", "Description En", "Description Fr", "Apply link En", "Apply link Fr", "Outcomes En", "Outcomes Fr", "Provider En", "Provider Fr")
+  # call.postCollectionItem("benefits", data)
+
+  #Example of iterating over all benefits and deleting
+  # items = json.loads(call.getAllCollectionItems(strapiCollectionType))
+  # for item in items:
+  #   call.deleteCollectionItem(strapiCollectionType, item["id"])
+
+  print("End of add")
+
+def moveExcelToStrapi():
 
   call = CallStrapiAPI(user, password, strapi)
 
@@ -19,32 +56,16 @@ def start():
     print("Unable to Authenticate")
     return
 
-  #Reads in CSV and adds rows to strapi
-  # csvParser = CSVParser(csvFile)
-  # data = csvParser.getData()
-  # for benefit in data:
-  #   call.postCollectionItem("benefits", benefit)
+  #Delete existing content in strapi
+  items = json.loads(call.getAllCollectionItems(strapiCollectionType))
+  for item in items:
+    call.deleteCollectionItem(strapiCollectionType, item["id"])
 
-  #Example of getting benefit number 5
-  # call.getCollectionItem("benefits", "5")
-
-  #Example of getting all of benefits
-  # call.getAllCollectionItems("benefits")
-
-  #Example of deleting benefit number 5
-  # call.deleteCollectionItem("benefits", "5")
-  
-  #Example of creating a benefit
-  # benefit = Benefit()
-  # data = benefit.buildData("Test title En", "Test title Fr", "Description En", "Description Fr", "Apply link En", "Apply link Fr", "Outcomes En", "Outcomes Fr", "Provider En", "Provider Fr")
-  # call.postCollectionItem("benefits", data)
-
-  #Example of iterating over all benefits and deleting
-  # items = json.loads(call.getAllCollectionItems("benefits"))
-  # for item in items:
-  #   call.deleteCollectionItem("benefits", item["id"])
-
-  print("End of add benefit")
+  #Add content to strapi from excel/csv
+  csvParser = CSVParser(csvFile)
+  data = csvParser.getData()
+  for item in data:
+    call.postCollectionItem(strapiCollectionType, item)
 
 #Authenticates user, does get by id and post data for new collection items
 class CallStrapiAPI:
@@ -128,9 +149,11 @@ class CSVParser:
       for row in spamreader:
         data = {}
         for columnIndex in range(len(row)):
+          #TODO: make collections, tpyes and program work
           if (header[columnIndex] != "collections" and header[columnIndex] != "types" and header[columnIndex] != "program"):
             data[header[columnIndex]] = row[columnIndex]
         result.append(data)
     return result
 
-start()
+#examples()
+moveExcelToStrapi()
