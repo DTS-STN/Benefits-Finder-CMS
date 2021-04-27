@@ -30,11 +30,19 @@ def start():
 
   #Example of getting all of benefits
   # call.getAllCollectionItems("benefits")
+
+  #Example of deleting benefit number 5
+  # call.deleteCollectionItem("benefits", "5")
   
   #Example of creating a benefit
   # benefit = Benefit()
   # data = benefit.buildData("Test title En", "Test title Fr", "Description En", "Description Fr", "Apply link En", "Apply link Fr", "Outcomes En", "Outcomes Fr", "Provider En", "Provider Fr")
   # call.postCollectionItem("benefits", data)
+
+  #Example of iterating over all benefits and deleting
+  # items = json.loads(call.getAllCollectionItems("benefits"))
+  # for item in items:
+  #   call.deleteCollectionItem("benefits", item["id"])
 
   print("End of add benefit")
 
@@ -73,6 +81,10 @@ class CallStrapiAPI:
       print("%s: %s" % (r.status_code, collectionType))
       if (r.status_code == 200):
         return r.text
+
+  def deleteCollectionItem(self, collectionType, id):
+    with requests.delete("%s/%s/%s" % (strapi, collectionType, id), headers = self.getHeader()) as r:
+      print("%s: Delete %s-%s" % (r.status_code, collectionType, id))
 
   def postCollectionItem(self, collectionType, data):
     with requests.post("%s/%s" % (strapi, collectionType), headers = self.getHeader(), data = data) as r:
