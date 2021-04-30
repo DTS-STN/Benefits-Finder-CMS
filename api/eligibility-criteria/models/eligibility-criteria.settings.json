@@ -1,0 +1,25 @@
+{
+  "kind": "collectionType",
+  "collectionName": "eligibility_criteria",
+  "info": {
+    "name": "EligibilityCriteria"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "Description_EN": {
+      "type": "text"
+    },
+    "Description_FR": {
+      "type": "text"
+    },
+    "benefits": {
+      "collection": "benefit",
+      "via": "eligibility_criteria",
+      "dominant": true
+    }
+  }
+}
