@@ -55,10 +55,10 @@
       "via": "benefits"
     },
     "EligibilityCriteria_EN": {
-      "type": "text"
+      "type": "richtext"
     },
     "EligibilityCriteria_FR": {
-      "type": "text"
+      "type": "richtext"
     }
   }
 }
