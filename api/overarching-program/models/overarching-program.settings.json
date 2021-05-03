@@ -26,8 +26,8 @@
       "type": "text"
     },
     "benefits": {
-      "collection": "benefit",
-      "via": "program"
+      "via": "program",
+      "collection": "benefit"
     },
     "ImageAltText_EN": {
       "type": "string"

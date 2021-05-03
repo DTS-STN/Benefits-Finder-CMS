@@ -51,12 +51,14 @@
       "dominant": true
     },
     "program": {
-      "via": "benefits",
-      "model": "overarching-program"
+      "model": "overarching-program",
+      "via": "benefits"
     },
-    "eligibility_criteria": {
-      "via": "benefits",
-      "collection": "eligibility-criteria"
+    "EligibilityCriteria_EN": {
+      "type": "text"
+    },
+    "EligibilityCriteria_Fr": {
+      "type": "text"
     }
   }
 }
