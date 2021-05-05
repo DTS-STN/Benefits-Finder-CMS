@@ -38,7 +38,12 @@ def examples():
   ##Example of creating a benefit
   # benefit = Benefit()
   # data = benefit.buildData("Test title En", "Test title Fr", "Description En", "Description Fr", "Apply link En", "Apply link Fr", "Outcomes En", "Outcomes Fr", "Provider En", "Provider Fr")
-  # call.postCollectionItem("benefits", data)
+  # call.postCollectionItem(strapiCollectionType, data)
+
+  ##Example of updating a benefit
+  # benefit = Benefit()
+  # data = benefit.buildData("Test title En updated", "Test title Fr", "Description En", "Description Fr", "Apply link En", "Apply link Fr", "Outcomes En", "Outcomes Fr", "Provider En", "Provider Fr")
+  # call.putCollectionItem(strapiCollectionType, data, "5")
 
   ##Example of iterating over all benefits and deleting
   # items = json.loads(call.getAllCollectionItems(strapiCollectionType))
@@ -47,7 +52,8 @@ def examples():
 
   print("End of add")
 
-def moveExcelToStrapi():
+#Inserts records into Strapi from CSV
+def insertCSVRowsToStrapi():
 
   call = CallStrapiAPI(user, password, strapi)
 
@@ -66,6 +72,35 @@ def moveExcelToStrapi():
   data = csvParser.getData()
   for item in data:
     call.postCollectionItem(strapiCollectionType, item)
+
+#updates strapi from csv
+##strapiKey - must match csvKey by value and be a field in Strapi
+##csvKey - must match strapiKey by value and be a header in the csv file
+##fields - must be a field in strapi and be in the header of the csv file
+def updateCSVRowsToStrapi(strapiKey, csvKey, fields):
+  call = CallStrapiAPI(user, password, strapi)
+
+  ##Ensure user is authenticated
+  if (not call.authenticate()):
+    print("Unable to Authenticate")
+    return
+
+  strapiItems = json.loads(call.getAllCollectionItems(strapiCollectionType))
+
+  csvParser = CSVParser(csvFile)
+  csvItems = csvParser.getData()
+
+  updatedItems = []
+  for strapiItem in strapiItems:
+    for csvItem in csvItems:
+      if strapiItem[strapiKey] == csvItem[csvKey]:
+        record = {"id": strapiItem["id"]}
+        for field in fields:
+          record[field] = csvItem[field]
+        updatedItems.append(record)
+  
+  for updatedItem in updatedItems:
+    call.putCollectionItem(strapiCollectionType, updatedItem, updatedItem["id"])
 
 #Authenticates user, does get by id and post data for new collection items
 class CallStrapiAPI:
@@ -115,6 +150,10 @@ class CallStrapiAPI:
       else:
         print("%s: %s failed to add to %s" % (r.status_code, data, collectionType))
 
+  def putCollectionItem(self, collectionType, data, id):
+    with requests.put("%s/%s/%s" % (strapi, collectionType, id), headers = self.getHeader(), data = data) as r:
+      print("%s: Updated %s-%s" % (r.status_code, collectionType, id))
+
 #Returns a Strapi friendly representation of the data
 class Benefit:
   def buildData(self, titleEn, titleFr, descriptionEn, descriptionFr, applyLinkEn, applyLinkFr, outcomesEn, outcomesFr, providerEn, providerFr, collections = None, types = None, program = None):
@@ -155,4 +194,5 @@ class CSVParser:
     return result
 
 #examples()
-moveExcelToStrapi()
+#insertCSVRowsToStrapi()
+updateCSVRowsToStrapi("Title_EN", "Title_EN", ["EligibilityCriteria_EN", "EligibilityCriteria_FR"])
