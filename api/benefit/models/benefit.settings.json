@@ -60,7 +60,7 @@
     "EligibilityCriteria_FR": {
       "type": "richtext"
     },
-    "benefit_key": {
+    "BenefitKey": {
       "type": "string",
       "unique": true,
       "required": true
