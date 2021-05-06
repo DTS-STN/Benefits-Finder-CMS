@@ -59,6 +59,11 @@
     },
     "EligibilityCriteria_FR": {
       "type": "richtext"
+    },
+    "BenefitKey": {
+      "type": "string",
+      "unique": true,
+      "required": true
     }
   }
 }
