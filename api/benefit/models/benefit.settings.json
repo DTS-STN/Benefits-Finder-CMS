@@ -64,6 +64,10 @@
       "type": "string",
       "unique": true,
       "required": true
+    },
+    "bundles": {
+      "via": "benefits",
+      "collection": "bundle"
     }
   }
 }
