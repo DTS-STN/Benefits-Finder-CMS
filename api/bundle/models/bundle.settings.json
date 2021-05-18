@@ -2,7 +2,8 @@
   "kind": "collectionType",
   "collectionName": "bundles",
   "info": {
-    "name": "Bundle"
+    "name": "Bundle",
+    "description": ""
   },
   "options": {
     "increments": true,
@@ -28,6 +29,21 @@
       "collection": "benefit",
       "via": "bundles",
       "dominant": true
+    },
+    "Image": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
+      "required": false
+    },
+    "ImageAltText_EN": {
+      "type": "string"
+    },
+    "ImageAltText_FR": {
+      "type": "string"
     }
   }
 }
