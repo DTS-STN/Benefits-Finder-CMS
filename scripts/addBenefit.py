@@ -65,11 +65,12 @@ def insertCSVRowsToStrapi():
   #Delete existing content in strapi
   items = json.loads(call.getAllCollectionItems(strapiCollectionType))
   for item in items:
-    call.deleteCollectionItem(strapiCollectionType, item["id"])
+   call.deleteCollectionItem(strapiCollectionType, item["id"])
 
   #Add content to strapi from excel/csv
-  csvParser = CSVParser(csvFile)
+  csvParser = CSVParser(csvFile, call)
   data = csvParser.getData()
+  print(data)
   for item in data:
     call.postCollectionItem(strapiCollectionType, item)
 
@@ -87,7 +88,7 @@ def updateCSVRowsToStrapi(strapiKey, csvKey, fields):
 
   strapiItems = json.loads(call.getAllCollectionItems(strapiCollectionType))
 
-  csvParser = CSVParser(csvFile)
+  csvParser = CSVParser(csvFile, call)
   csvItems = csvParser.getData()
 
   updatedItems = []
@@ -132,6 +133,12 @@ class CallStrapiAPI:
       if (r.status_code == 200):
         return r.text
 
+  def getCollectionItemById(self, collectionType, id, idValue):
+    with requests.get("%s/%s?%s=%s" % (strapi, collectionType, id, idValue), headers = self.getHeader()) as r:
+      print("%s: %s?%s=%s" % (r.status_code, collectionType, id, idValue))
+      if (r.status_code == 200):
+        return r.json()
+
   def getAllCollectionItems(self, collectionType):
     with requests.get("%s/%s" % (strapi, collectionType), headers = self.getHeader()) as r:
       print("%s: %s" % (r.status_code, collectionType))
@@ -148,7 +155,8 @@ class CallStrapiAPI:
         print("%s: %s added to %s" % (r.status_code, data, collectionType))
         return r.text
       else:
-        print("%s: %s failed to add to %s" % (r.status_code, data, collectionType))
+        print("%s: %s failed to add to %s: %s" % (r.status_code, data, collectionType, r.text))
+
 
   def putCollectionItem(self, collectionType, data, id):
     with requests.put("%s/%s/%s" % (strapi, collectionType, id), headers = self.getHeader(), data = data) as r:
@@ -175,8 +183,9 @@ class Benefit:
     return data
 
 class CSVParser:
-  def __init__(self, csvFile):
+  def __init__(self, csvFile, call):
     self.csvFile = csvFile
+    self.call = call
 
   def getData(self):
     print("Loading CSV from %s" % (self.csvFile))
@@ -190,9 +199,18 @@ class CSVParser:
           #TODO: make collections, tpyes and program work
           if (header[columnIndex] != "collections" and header[columnIndex] != "types" and header[columnIndex] != "program"):
             data[header[columnIndex]] = row[columnIndex]
+
+          if (header[columnIndex] == "Benefits"):
+            benefitIds = []
+            for item in row[columnIndex].split(","):
+              benefits = self.call.getCollectionItemById(header[columnIndex], "BenefitKey", item)
+              if len(benefits) > 0:
+                benefitIds.append(benefits[0]["id"])
+            data[header[columnIndex].lower()] = benefitIds
+
         result.append(data)
     return result
 
 #examples()
-#insertCSVRowsToStrapi()
-updateCSVRowsToStrapi("Title_EN", "Title_EN", ["EligibilityCriteria_EN", "EligibilityCriteria_FR"])
+insertCSVRowsToStrapi()
+#updateCSVRowsToStrapi("Title_EN", "Title_EN", ["EligibilityCriteria_EN", "EligibilityCriteria_FR"])
