@@ -196,17 +196,19 @@ class CSVParser:
       for row in spamreader:
         data = {}
         for columnIndex in range(len(row)):
-          #TODO: make collections, tpyes and program work
-          if (header[columnIndex] != "collections" and header[columnIndex] != "types" and header[columnIndex] != "program"):
-            data[header[columnIndex]] = row[columnIndex]
-
-          if (header[columnIndex] == "Benefits"):
-            benefitIds = []
+          # add the list of bundles that are tied to the benefit
+          if (header[columnIndex] == "bundles"):
+            bundleIds = []
             for item in row[columnIndex].split(","):
-              benefits = self.call.getCollectionItemById(header[columnIndex], "BenefitKey", item)
-              if len(benefits) > 0:
-                benefitIds.append(benefits[0]["id"])
-            data[header[columnIndex].lower()] = benefitIds
+              bundles = self.call.getCollectionItemById(header[columnIndex], "slug", item)
+              if len(bundles) > 0:
+                bundleIds.append(bundles[0]["id"])
+            data[header[columnIndex].lower()] = bundleIds
+          
+          # since type and program don't have unique ids other than the auto-generated one, we're using title
+          if (header[columnIndex] == "type" or header[columnIndex] == "program"):
+            relation = self.call.getCollectionItemById(header[columnIndex], "Title_EN", item)
+            data[header[columnIndex].lower()] = relation["id"]
 
         result.append(data)
     return result
