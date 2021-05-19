@@ -204,11 +204,17 @@ class CSVParser:
               if len(bundles) > 0:
                 bundleIds.append(bundles[0]["id"])
             data[header[columnIndex].lower()] = bundleIds
-          
           # since type and program don't have unique ids other than the auto-generated one, we're using title
-          if (header[columnIndex] == "type" or header[columnIndex] == "program"):
-            relation = self.call.getCollectionItemById(header[columnIndex], "Title_EN", item)
-            data[header[columnIndex].lower()] = relation["id"]
+          elif (header[columnIndex] == "type"):
+            relation = self.call.getCollectionItemById("benefit-types", "Type_EN", row[columnIndex].strip())
+            if (len(relation) > 0):
+              data[header[columnIndex].lower()] = str(relation[0]["id"])
+          elif (header[columnIndex] == "program"):
+            relation = self.call.getCollectionItemById("overarching-programs", "Title_EN", row[columnIndex].strip())
+            if (len(relation) > 0):
+              data[header[columnIndex].lower()] = str(relation[0]["id"])
+          else:
+            data[header[columnIndex]] = row[columnIndex]
 
         result.append(data)
     return result
