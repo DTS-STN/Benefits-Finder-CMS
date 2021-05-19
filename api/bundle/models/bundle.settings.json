@@ -1,0 +1,49 @@
+{
+  "kind": "collectionType",
+  "collectionName": "bundles",
+  "info": {
+    "name": "Bundle",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "Title_EN": {
+      "type": "string",
+      "required": true
+    },
+    "Title_FR": {
+      "type": "string",
+      "required": true
+    },
+    "Description_EN": {
+      "type": "text"
+    },
+    "Description_FR": {
+      "type": "text"
+    },
+    "benefits": {
+      "collection": "benefit",
+      "via": "bundles",
+      "dominant": true
+    },
+    "Image": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
+      "required": false
+    },
+    "ImageAltText_EN": {
+      "type": "string"
+    },
+    "ImageAltText_FR": {
+      "type": "string"
+    }
+  }
+}
