@@ -26,8 +26,8 @@
       "type": "text"
     },
     "benefits": {
-      "collection": "benefit",
       "via": "bundles",
+      "collection": "benefit",
       "dominant": true
     },
     "Image": {
@@ -44,6 +44,9 @@
     },
     "ImageAltText_FR": {
       "type": "string"
+    },
+    "slug": {
+      "type": "uid"
     }
   }
 }
