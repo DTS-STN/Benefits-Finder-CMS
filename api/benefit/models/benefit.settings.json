@@ -45,6 +45,11 @@
       "model": "benefit-type",
       "via": "benefits"
     },
+    "collections": {
+      "collection": "collection",
+      "via": "benefits",
+      "dominant": true
+    },
     "program": {
       "model": "overarching-program",
       "via": "benefits"
@@ -61,8 +66,8 @@
       "required": true
     },
     "bundles": {
-      "collection": "bundle",
-      "via": "benefits"
+      "via": "benefits",
+      "collection": "bundle"
     }
   }
 }

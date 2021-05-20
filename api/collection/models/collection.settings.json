@@ -1,8 +1,8 @@
 {
   "kind": "collectionType",
-  "collectionName": "bundles",
+  "collectionName": "collections",
   "info": {
-    "name": "Bundle",
+    "name": "Collection",
     "description": ""
   },
   "options": {
@@ -26,24 +26,8 @@
       "type": "text"
     },
     "benefits": {
-      "collection": "benefit",
-      "via": "bundles",
-      "dominant": true
-    },
-    "Image": {
-      "model": "file",
-      "via": "related",
-      "allowedTypes": [
-        "images"
-      ],
-      "plugin": "upload",
-      "required": false
-    },
-    "ImageAltText_EN": {
-      "type": "string"
-    },
-    "ImageAltText_FR": {
-      "type": "string"
+      "via": "collections",
+      "collection": "benefit"
     }
   }
 }
