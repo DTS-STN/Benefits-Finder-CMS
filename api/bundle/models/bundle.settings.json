@@ -33,9 +33,7 @@
     "Image": {
       "model": "file",
       "via": "related",
-      "allowedTypes": [
-        "images"
-      ],
+      "allowedTypes": ["images"],
       "plugin": "upload",
       "required": false
     },
@@ -44,9 +42,6 @@
     },
     "ImageAltText_FR": {
       "type": "string"
-    },
-    "slug": {
-      "type": "uid"
     }
   }
 }
