@@ -4,12 +4,6 @@ repositories:
   - name: bitnami
     url: https://charts.bitnami.com/bitnami
 
-{{- if or (eq .Environment.Name "prod-blue") (eq .Environment.Name "prod-green") }}
-context: EsDCDTSRG-K8S
-{{ else }}
-context: EsDCDTSDevRG-K8S
-{{ end }}
-
 environments:
   dev:
   prod-blue:
